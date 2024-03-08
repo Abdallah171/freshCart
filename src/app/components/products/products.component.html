@@ -1,0 +1,33 @@
+<section class=" my-4">
+
+    <h2>Popular Products</h2>
+    <input type="search" class="form-control w-50 mx-auto my-3" placeholder="Search..." [(ngModel)]="searchTerm">
+    <div class="row g-4">
+        <div class=" col-md-2 " *ngFor="let product of products | search:searchTerm ">
+
+            <div class="product ">
+
+                <div [routerLink]="['/details',product._id]" class="p-2 cursor-pointer">
+                    <img [src]="product.imageCover" alt="product.tile" class=" w-100">
+                    <h3 class="h6">{{product.category.name|buy}}</h3>
+                    <h4 class="h6">{{product.title|termText:2}}</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{product.price|currency:'EUR'}}</span>
+                        <div class="">
+                            <i class=" fas fa-star rating-color"></i>
+                            <span class="text-muted">{{product.ratingsAverage}}</span></div>
+                    </div>
+
+                </div>
+                <div class="text-center py-1">
+                    <div>
+                        <i *ngIf="!wishListItems.includes($any(product._id))" (click)="addTolist(product._id)" class="fa-solid fa-heart mt-2 text-center cursor-pointer fa-3x"></i>
+                        <i *ngIf="wishListItems.includes($any(product._id))" (click)="removeFromList(product._id)" class="fa-solid fa-heart mt-2 text-center text-danger cursor-pointer fa-3x"></i>
+                    </div>
+                </div>
+                <button class=" btn-main w-100" (click)="addCart(product._id)">Add Product</button>
+
+            </div>
+        </div>
+    </div>
+</section>

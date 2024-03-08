@@ -1,0 +1,40 @@
+<section class="brand py-5">
+    <h2 class=" text-main text-center py-3 fw-bolder">All Brands</h2>
+    <div class="row g-4">
+        <div class=" col-md-3" *ngFor="let item of brands">
+            <div class="product" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getClickedBrand(item._id)">
+                <img class=" w-100" height="270px" [src]="item.image" [alt]="item.name">
+                <h3 class="h5 text-muted text-center p-2 fw-bolder">{{item.name}}</h3>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="clicked">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class=" d-flex justify-content-between justify-content-center align-items-center">
+                <div class="ms-4">
+                    <h2 class="text-main">{{specificBrand.name}}</h2>
+                    <P>{{ specificBrand.slug }}</P>
+                </div>
+
+                <div>
+                    <img [src]="specificBrand.image" alt="" />
+
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

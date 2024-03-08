@@ -1,0 +1,74 @@
+<!-- home main slider -->
+<section>
+    <div class="row g-0">
+        <div class="col-md-8">
+            <owl-carousel-o [options]="mainSlider">
+                <ng-template carouselSlide>
+                    <img src="./assets/images/main-slider-1.jpeg" class="w-100" height="400" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="./assets/images/main-slider-2.jpeg" class="w-100" height="400" alt="">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="./assets/images/main-slider-3.jpeg" class="w-100" height="400" alt="">
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="col-md-4">
+            <img src="./assets/images/slide-1.jpeg" class="w-100" height="200" alt="">
+            <img src="./assets/images/slide-2.jpeg" class="w-100" height="200" alt="">
+        </div>
+    </div>
+</section>
+
+<!-- home categories slider -->
+<section class="my-3 text-center">
+    <owl-carousel-o [options]="categoriesSliderOption">
+
+        <ng-container *ngFor="let item of categories">
+            <ng-template carouselSlide>
+                <div>
+                    <img class=" w-100" height="270px" [src]="item.image" [alt]="item.name">
+                    <h3 class="h5">{{item.name}}</h3>
+                </div>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+</section>
+
+<!-- home products -->
+<section class=" my-4">
+
+    <h2>Popular Products</h2>
+    <input type="search" class="form-control w-50 mx-auto my-3" placeholder="Search..." [(ngModel)]="searchTerm">
+    <div class="row g-4">
+        <div class=" col-md-2 " *ngFor="let product of products | search:searchTerm ">
+
+            <div class="product ">
+
+                <div [routerLink]="['/details',product._id]" class="p-2 cursor-pointer">
+                    <img [src]="product.imageCover" alt="product.tile" class=" w-100">
+                    <h3 class="h6">{{product.category.name|buy}}</h3>
+                    <h4 class="h6">{{product.title|termText:2}}</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{product.price|currency:'EUR'}}</span>
+                        <div class="">
+                            <i class=" fas fa-star rating-color"></i>
+                            <span class="text-muted">{{product.ratingsAverage}}</span></div>
+                    </div>
+
+
+                </div>
+                <div class="text-center py-1">
+                    <div>
+                        <i *ngIf="!wishListItems.includes($any(product._id))" (click)="addTolist(product._id)" class="fa-solid fa-heart mt-2 text-center cursor-pointer fa-3x"></i>
+                        <i *ngIf="wishListItems.includes($any(product._id))" (click)="removeFromList(product._id)" class="fa-solid fa-heart mt-2 text-center text-danger cursor-pointer fa-3x"></i>
+                    </div>
+                </div>
+                <button class=" btn-main w-100" (click)="addCart(product._id)">Add Product</button>
+
+            </div>
+        </div>
+    </div>
+</section>

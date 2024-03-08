@@ -1,0 +1,29 @@
+<section class="w-75 mx-auto bg-main-light p-3 rounded-3 my-2 ">
+    <h1>Your Perfect Shop Cart</h1>
+    <p class="text-main fw-bolder">Total Price : {{cartDetails.totalCartPrice | currency}}</p>
+    <div class="row border-bottom pb-2" *ngFor="let item of cartDetails.products">
+        <div class=" col-md-1">
+            <img class=" w-100" [src]="item.product.imageCover" [alt]="">
+        </div>
+        <div class="col-md-11 d-flex justify-content-between align-items-center text-start">
+            <!-- details -->
+            <div class="">
+                <h3 class=" h5">{{item.product.title}}</h3>
+                <p class="text-main m-0 fw-bolder">Price : {{item.price}}</p>
+                <button class=" btn p-0 m-0" (click)="removeItem(item.product._id)"><i class=" fa-regular fa-trash-can fw-bolder text-danger "> Remove</i></button>
+
+            </div>
+            <!-- btns -->
+            <div>
+                <button (click)="changeCount(item.product._id,item.count+1)" class="btn border-success">+</button>
+                <span> {{item.count}} </span>
+                <button (click)="changeCount(item.product._id,item.count-1)" class="btn border-success">-</button>
+            </div>
+        </div>
+
+    </div>
+    <button class="btn-main flex-shrink-0 my-3" (click)="clearCart()">Clear All Items</button>
+
+    <button class="btn-main d-block w-100 mx-auto" [routerLink]="['/checkout',cartDetails._id]">Online Payment <img src="./assets/images/visa-1.svg" alt=""></button>
+
+</section>
