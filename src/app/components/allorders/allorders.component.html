@@ -1,16 +1,10 @@
 <section class="bg-main-light p-4 rounded-3 my-3 shadow w-50 mx-auto">
-    <div class="row border-bottom pb-2" *ngFor="let order of allOrders.cartItems">
-        <div class=" col-md-1">
-            <p class=" bg-danger">{{order.price}}</p>
-        </div>
-        <div class="col-md-11 d-flex justify-content-between align-items-center text-start">
-            <!-- details -->
-            <!-- <div class="">
-                <h1>{{order.totalOrderPrice}}</h1>
-
-            </div> -->
-
-        </div>
+    <div class="row border-bottom pb-2 text-center ">
+        <p class="text-center fw-bolder "> Thanks For Your Buying From Us
+        </p>
+        <button class="btn bg-danger w-25 mx-auto ">
+            <a routerLink="/home">Back To Home Page</a>
+        </button>
 
     </div>
 </section>

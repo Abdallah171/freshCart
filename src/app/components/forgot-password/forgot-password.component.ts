@@ -28,7 +28,7 @@ export class ForgotPasswordComponent {
     this.isLoading = true;
     this._AuthService.forgotPassword(form.value).subscribe({
       next: (response) => {
-        this.SuccessEmailMsg = response.message
+        this.SuccessEmailMsg = response
         console.log(this.SuccessEmailMsg);
         if (response.statusMsg == 'success') {
           this.success = true

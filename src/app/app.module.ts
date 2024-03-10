@@ -18,7 +18,7 @@ import { NavBlankComponent } from './components/nav-blank/nav-blank.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { BlankLayoutComponent } from './components/blank-layout/blank-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { ToastrModule } from 'ngx-toastr';
 
@@ -31,6 +31,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { MyHttpInterceptor } from './shared/interceptors/my-http.interceptor';
 
 
 @NgModule({
@@ -70,7 +71,10 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     ToastrModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
